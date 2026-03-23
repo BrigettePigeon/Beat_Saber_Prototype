@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cacf17e815b4fc94b9af673f362c1776
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Samples/Resources/ball_material.mat
+  uploadId: 838676

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 46721b5ccbc63ab40a2d4099712224ee
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/GestureManager/GestureManager/LightingData.asset
+  uploadId: 838676

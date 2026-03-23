@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9af6a99feda096b478fd1617745b0bb0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/GestureManager/Scripts/SubmenuCoordinateSystem.cs
+  uploadId: 838676

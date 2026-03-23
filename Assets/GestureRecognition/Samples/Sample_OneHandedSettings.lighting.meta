@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d49f301a3affb1849a7e1e40839f6ae2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Samples/Sample_OneHandedSettings.lighting
+  uploadId: 838676

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 23e9412ac77c1264b826a19803f83c43
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/GestureManager/Resources/GesturemanagerBackgroundMaterial.mat
+  uploadId: 838676

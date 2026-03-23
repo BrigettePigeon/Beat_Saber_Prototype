@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 862d114cb5831b548a10d195a8392f5a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/GestureManager/Resources/SplashscreenMaterial.mat
+  uploadId: 838676

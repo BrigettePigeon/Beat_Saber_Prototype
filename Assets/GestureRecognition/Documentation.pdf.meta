@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f13ea03ae588f8b428cf06f3188f7685
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Documentation.pdf
+  uploadId: 838676

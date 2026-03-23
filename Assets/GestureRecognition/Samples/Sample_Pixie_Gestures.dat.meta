@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ae48f4e168a35cd468e5d02036e8ca38
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Samples/Sample_Pixie_Gestures.dat
+  uploadId: 838676

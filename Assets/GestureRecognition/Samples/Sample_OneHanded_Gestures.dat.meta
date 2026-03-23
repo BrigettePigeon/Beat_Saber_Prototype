@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d4d8c7b34be4909409fc198d4b7ae816
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Samples/Sample_OneHanded_Gestures.dat
+  uploadId: 838676

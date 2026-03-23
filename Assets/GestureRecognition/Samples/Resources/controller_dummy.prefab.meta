@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d1cf2903b4b09044f872be2d10dd5037
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Samples/Resources/controller_dummy.prefab
+  uploadId: 838676

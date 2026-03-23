@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: df3ba80105f9da9449c5a1687b5b6b22
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Samples/Sample_Military.unity
+  uploadId: 838676

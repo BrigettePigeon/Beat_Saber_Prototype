@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 917cfd9a38af5f64dabfddd682de4812
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Samples/Sample_TwoHanded_Gestures.dat
+  uploadId: 838676

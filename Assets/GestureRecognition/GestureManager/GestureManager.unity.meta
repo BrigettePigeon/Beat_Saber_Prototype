@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8d91ff346d965b042b02e8f26de1e499
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/GestureManager/GestureManager.unity
+  uploadId: 838676

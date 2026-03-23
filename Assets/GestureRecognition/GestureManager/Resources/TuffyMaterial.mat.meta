@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 903c085cd1e327e4c988e855b150a233
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/GestureManager/Resources/TuffyMaterial.mat
+  uploadId: 838676

@@ -1,0 +1,293 @@
+﻿/*
+ * MiVRy - 3D gesture recognition library plug-in for Unity.
+ * Version 2.14
+ * Copyright (c) 2025 MARUI-PlugIn (inc.)
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY 
+ * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+using UnityEngine;
+using System.Text.RegularExpressions;
+
+public class EditableTextField : MonoBehaviour
+{
+    [System.Serializable]
+    public enum Target
+    {
+        NumberOfParts,
+        GestureName,
+        CombinationName,
+        LoadFile,
+        SaveFile,
+        ContinuousGesturingPeriod,
+        ContinuousGesturingSmoothing,
+        ContinuousGesturingSamplingrate,
+    }
+    public Target target;
+
+    public TextMesh displayText;
+
+    public int maxDisplayLength;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        this.refreshText();
+    }
+
+    public void refreshText()
+    {
+        GestureManager gm = GestureManagerVR.me?.gestureManager;
+        if (gm == null)
+            return;
+        if (displayText == null)
+            return;
+
+        string text = null;
+        switch (this.target) {
+            case Target.NumberOfParts:
+                text = $"{gm.numberOfParts}";
+                break;
+            case Target.GestureName: {
+                SubmenuGesture submenuGesture = this.transform.parent.gameObject.GetComponent<SubmenuGesture>();
+                if (submenuGesture.CurrentGesture < 0) {
+                    text = "";
+                } else if (gm.gr != null) {
+                    text = gm.gr.getGestureName(submenuGesture.CurrentGesture);
+                } else if (gm.gc != null) {
+                    text = gm.gc.getGestureName(submenuGesture.CurrentPart, submenuGesture.CurrentGesture);
+                } else {
+                    text = "???";
+                }
+                } break;
+            case Target.CombinationName: {
+                SubmenuCombination submenuCombination = this.transform.parent.gameObject.GetComponent<SubmenuCombination>();
+                if (submenuCombination.CurrentCombination < 0) {
+                    text = "";
+                } else if (gm.gc != null) {
+                    text = gm.gc.getGestureCombinationName(submenuCombination.CurrentCombination);
+                } else {
+                    text = "???";
+                }
+                } break;
+            case Target.LoadFile:
+                if (gm.gr != null) {
+                    text = gm.fileLoadGestures;
+                } else if (gm.gc != null) {
+                    text = gm.fileLoadCombinations;
+                } else {
+                    text = "";
+                }
+                break;
+            case Target.SaveFile:
+                if (gm.gr != null) {
+                    text = gm.fileSaveGestures;
+                } else if (gm.gc != null) {
+                    text = gm.fileSaveCombinations;
+                } else {
+                    text = "";
+                }
+                break;
+            case Target.ContinuousGesturingPeriod:
+                if (gm.gr != null) {
+                    text = gm.gr.contdIdentificationPeriod == 0 ? "" : $"{gm.gr.contdIdentificationPeriod}";
+                } else if (gm.gc != null) {
+                    text = gm.gc.getContdIdentificationPeriod(0) == 0 ? "" : $"{gm.gc.getContdIdentificationPeriod(0)}";
+                } else {
+                    text = "";
+                }
+                break;
+            case Target.ContinuousGesturingSmoothing:
+                if (gm.gr != null) {
+                    text = gm.gr.contdIdentificationSmoothing == 0 ? "" : $"{gm.gr.contdIdentificationSmoothing}";
+                } else if (gm.gc != null) {
+                    text = gm.gc.getContdIdentificationSmoothing(0) == 0 ? "" : $"{gm.gc.getContdIdentificationSmoothing(0)}";
+                } else {
+                    text = "";
+                }
+                break;
+            case Target.ContinuousGesturingSamplingrate:
+                text = gm.continuous_gesturing_samplingrate == 0 ? "" : $"{gm.continuous_gesturing_samplingrate}";
+                break;
+            default:
+                text = "???";
+                break;
+        }
+        if (text.Length > this.maxDisplayLength)
+            text = text.Substring(text.Length - this.maxDisplayLength);
+        this.displayText.text = text;
+    }
+
+    public void setValue(string text)
+    {
+        GestureManager gm = GestureManagerVR.me?.gestureManager;
+        if (gm == null)
+            return;
+        switch (this.target) {
+            case Target.NumberOfParts:
+                text = Regex.Replace(text, "[^0-9]", "");
+                text = (text.Length == 0) ? "0" : text.Substring(text.Length - 1);// only use last digit
+                gm.numberOfParts = int.Parse(text);
+                GestureManagerVR.refresh();
+                break;
+            case Target.GestureName: {
+                SubmenuGesture submenuGesture = this.transform.parent.gameObject.GetComponent<SubmenuGesture>();
+                if (submenuGesture.CurrentGesture < 0) {
+                    return;
+                }
+                if (gm.gr != null) {
+                    gm.gr.setGestureName(submenuGesture.CurrentGesture, text);
+                } else if (gm.gc != null) {
+                    gm.gc.setGestureName(submenuGesture.CurrentPart, submenuGesture.CurrentGesture, text);
+                }
+                } break;
+            case Target.CombinationName: {
+                SubmenuCombination submenuCombination = this.transform.parent.gameObject.GetComponent<SubmenuCombination>();
+                if (submenuCombination.CurrentCombination < 0) {
+                    return;
+                }
+                gm.gc.setGestureCombinationName(submenuCombination.CurrentCombination, text);
+                } break;
+            case Target.LoadFile:
+                if (gm.gr != null)
+                    gm.fileLoadGestures = text;
+                else if (gm.gc != null)
+                    gm.fileLoadCombinations = text;
+                break;
+            case Target.SaveFile:
+                if (gm.gr != null)
+                    gm.fileSaveGestures = text;
+                else if (gm.gc != null)
+                    gm.fileSaveCombinations = text;
+                break;
+            case Target.ContinuousGesturingPeriod:
+                displayText.text = Regex.Replace(text, "[^0-9]", "");
+                if (displayText.text.Length == 0 || !int.TryParse(displayText.text, out int period)) {
+                    period = 0;
+                }
+                if (gm.gr != null) {
+                    gm.gr.contdIdentificationPeriod = period;
+                } else if (gm.gc != null) {
+                    for (int part = 0; part < gm.gc.numberOfParts(); part++) {
+                        gm.gc.setContdIdentificationPeriod(part, period);
+                    }
+                }
+                break;
+            case Target.ContinuousGesturingSmoothing:
+                displayText.text = Regex.Replace(text, "[^0-9]", "");
+                if (displayText.text.Length == 0 || !int.TryParse(displayText.text, out int smoothing)) {
+                    smoothing = 0;
+                }
+                if (gm.gr != null) {
+                    gm.gr.contdIdentificationSmoothing = smoothing;
+                } else if (gm.gc != null) {
+                    for (int part = 0; part < gm.gc.numberOfParts(); part++) {
+                        gm.gc.setContdIdentificationSmoothing(part, smoothing);
+                    }
+                }
+                break;
+            case Target.ContinuousGesturingSamplingrate:
+                displayText.text = Regex.Replace(text, "[^0-9]", "");
+                if (displayText.text.Length == 0 || !int.TryParse(displayText.text, out int samplingrate)) {
+                    samplingrate = 0;
+                }
+                gm.continuous_gesturing_samplingrate = samplingrate;
+                if (gm.continuous_gesturing_samplingrate < 0) {
+                    gm.continuous_gesturing_samplingrate = 0;
+                }
+                break;
+        }
+        this.refreshText();
+    }
+
+    private string getValue()
+    {
+        GestureManager gm = GestureManagerVR.me?.gestureManager;
+        if (gm == null)
+            return "";
+        switch (this.target) {
+            case Target.NumberOfParts:
+                return $"{gm.numberOfParts}";
+            case Target.GestureName: {
+                SubmenuGesture submenuGesture = this.transform.parent.gameObject.GetComponent<SubmenuGesture>();
+                if (submenuGesture.CurrentGesture < 0) {
+                    return "";
+                }
+                if (gm.gr != null) {
+                    return gm.gr.getGestureName(submenuGesture.CurrentGesture);
+                } else if (gm.gc != null) {
+                    return gm.gc.getGestureName(submenuGesture.CurrentPart, submenuGesture.CurrentGesture);
+                } else {
+                    return "";
+                }
+                }
+            case Target.CombinationName: {
+                SubmenuCombination submenuCombination = this.transform.parent.gameObject.GetComponent<SubmenuCombination>();
+                if (submenuCombination.CurrentCombination < 0)
+                {
+                    return "";
+                }
+                return gm.gc.getGestureCombinationName(submenuCombination.CurrentCombination);
+                }
+            case Target.LoadFile:
+                if (gm.gr != null)
+                    return gm.fileLoadGestures;
+                else if (gm.gc != null)
+                    return gm.fileLoadCombinations;
+                return "";
+            case Target.SaveFile:
+                if (gm.gr != null)
+                    return gm.fileSaveGestures;
+                else if (gm.gc != null)
+                    return gm.fileSaveCombinations;
+                return "";
+            case Target.ContinuousGesturingPeriod:
+                if (gm.gr != null)
+                    return gm.gr.contdIdentificationPeriod == 0 ? "" : $"{gm.gr.contdIdentificationPeriod}";
+                else if (gm.gc != null)
+                    return gm.gc.getContdIdentificationPeriod(0) == 0 ? "" : $"{gm.gc.getContdIdentificationPeriod(0)}";
+                return "";
+            case Target.ContinuousGesturingSmoothing:
+                if (gm.gr != null)
+                    return gm.gr.contdIdentificationSmoothing == 0 ? "" : $"{gm.gr.contdIdentificationSmoothing}";
+                else if (gm.gc != null)
+                    return gm.gc.getContdIdentificationSmoothing(0) == 0 ? "" : $"{gm.gc.getContdIdentificationSmoothing(0)}";
+                return "";
+            case Target.ContinuousGesturingSamplingrate:
+                return gm.continuous_gesturing_samplingrate == 0 ? "" : $"{gm.continuous_gesturing_samplingrate}";
+        }
+        return "[ERROR]";
+    }
+
+    public void keyboardInput(KeyboardKey key)
+    {
+        if (displayText == null)
+            return;
+        this.setValue(key.applyTo(this.getValue()));
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.name.EndsWith("pointer"))
+            return;
+        if (GestureManagerVR.isGesturing)
+            return;
+        GestureManagerVR.setInputFocus(this);
+        switch (this.target) {
+            case Target.LoadFile:
+            case Target.SaveFile:
+                SubmenuFileSuggestions.active_text_field = this;
+                break;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0a607abe0ee8000499cd7826c91109e4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143176
+  packageName: MiVRy - 3D Gesture Recognition
+  packageVersion: 2.14
+  assetPath: Assets/GestureRecognition/Samples/Sample_Military/LightingData.asset
+  uploadId: 838676
